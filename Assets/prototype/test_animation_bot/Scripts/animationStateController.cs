@@ -19,32 +19,14 @@ public class animationStateController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+{
+    bool forwardpresskey = Input.GetKey(KeyCode.W);
+    bool runpresskey = Input.GetKey(KeyCode.LeftShift);
 
-        
-        bool isWalking = animator.GetBool(walkHash);
-        bool isRunning = animator.GetBool(runHash);
-        bool forwardpresskey = Input.GetKey("w");
-        bool runpresskey = Input.GetKey("left shift");
+    bool shouldWalk = forwardpresskey;
+    bool shouldRun = forwardpresskey && runpresskey;
 
-
-        if(!isWalking && forwardpresskey)
-        {
-            animator.SetBool(walkHash, true);
-        }
-         if(isWalking && !forwardpresskey)
-        {
-            animator.SetBool(walkHash, false);
-        }
-        if(isRunning && (forwardpresskey && runpresskey) )
-        {
-            animator.SetBool(runHash, true);
-        }
-         if(isRunning && (!forwardpresskey || !runpresskey))
-        {
-            animator.SetBool(runHash, false);
-        }
-
-        
-    }
+    animator.SetBool(walkHash, shouldWalk);
+    animator.SetBool(runHash, shouldRun);
+}
 }
