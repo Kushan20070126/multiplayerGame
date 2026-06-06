@@ -1,0 +1,3 @@
+repository "multiplayerGame/multiplayerGame@18968357598225@cloud"
+  path "/"
+    smartbranch "/main"
